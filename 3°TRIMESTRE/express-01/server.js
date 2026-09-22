@@ -1,11 +1,12 @@
 import express from 'express'
-
-const PORT = 3000
+import path from 'path'
+const PORT = process.env.PORT || 3000
 const app = express()
+const baseDir = import.meta.dirname
+//middleware(guardião)
 
-app.get('/', (req, res) => { // calback ou retorno
-    res.send('<h3>Hello Pet!</h3>')
-})
+app.use(express.static(path.join(baseDir, 'public')))
+
 app.get('/servicos', (req, res) => { //callback ou retorno
   res.send('<h3>Serviços pet</>')
 })
